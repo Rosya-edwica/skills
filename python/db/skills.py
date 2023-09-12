@@ -6,7 +6,7 @@ from rich.progress import track
 def get_all_skills_name() -> list[str]:
     conn = connect_to_mysql()
     cursor = conn.cursor()
-    cursor.execute("SELECT name FROM demand WHERE is_deleted IS FALSE")
+    cursor.execute("SELECT name FROM demand WHERE is_deleted IS FALSE and (type_group='навык' or is_custom is true)")
     skills = [row[0].lower() for row in cursor.fetchall()]
     conn.close()
     return skills
