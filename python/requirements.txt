@@ -1,0 +1,5 @@
+pymysql
+rich
+python-dotenv
+python-Levenshtein
+fuzzywuzzy
