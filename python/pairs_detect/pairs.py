@@ -4,7 +4,7 @@ from rich.progress import track
 
 def get_duplicate_ids_by_fuzzy(skills: list[Skill]) -> list[Pair]:
     pairs = []
-    for index in track(range(len(skills)-1)):
+    for index in track(range(1000)):
         skill_one = skills[index]
         for index2 in range(index+1, len(skills)):
             skill_two = skills[index2]
