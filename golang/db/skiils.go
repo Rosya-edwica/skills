@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"skills/models"
 	"skills/tools"
+	"strings"
 )
 
 func (d *DB) GetSkills() (skills []models.Skill) {
@@ -25,7 +26,7 @@ func (d *DB) GetSkills() (skills []models.Skill) {
 
 func (d *DB) UpdateSkillsAfterSpeller(skills []models.FixedSkill) {
 	for _, skill := range skills {
-		query := fmt.Sprintf(`UPDATE demand SET name='%s' WHERE id=%d;`, skill.FixedName, skill.Id)
+		query := fmt.Sprintf(`UPDATE demand SET name='%s' WHERE id=%d;`, strings.ReplaceAll(skill.FixedName, "'", "`"), skill.Id)
 		tx, _ := d.Connection.Begin()
 		_, err := d.Connection.Exec(query)
 		tools.CheckErr(err)
