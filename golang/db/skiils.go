@@ -7,7 +7,7 @@ import (
 )
 
 func (d *DB) GetSkills() (skills []models.Skill) {
-	rows, err := d.Connection.Query("SELECT id, name FROM demand WHERE type_group='навык' AND is_deleted IS FALSE")
+	rows, err := d.Connection.Query("SELECT id, name FROM demand WHERE (type_group='навык' or is_custom IS TRUE) AND is_deleted IS FALSE")
 	tools.CheckErr(err)
 	defer rows.Close()
 	for rows.Next() {
